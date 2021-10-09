@@ -16,9 +16,7 @@ let calculatorModule = (() => {
 
     const saveOperations = (arr, result) => map.set(arr.join(''), result)
 
-    const enter = expressionValue => {
-        expression.push(expressionValue)
-    }
+    const enter = expressionValue => expression.push(expressionValue)
 
     const equals = () => {
         const [n1, op, n2] = expression;
