@@ -2,25 +2,31 @@ let calculatorModule = (() => {
     let expression = []
     let map = new Map();
 
+    let sum = (n1, n2) => +n1 + +n2
+    let subt = (n1, n2) => +n1 - +n2
+    let mult = (n1, n2) => +n1 * +n2
+    let div = (n1, n2) => +n1 * +n2
+
     const operators = {
-        '+': (n1, n2) => +n1 + +n2,
-        '-': (n1, n2) => +n1 - +n2,
-        '*': (n1, n2) => +n1 * +n2,
-        '/': (n1, n2) => +n1 / +n2
+        '+': sum,
+        '-': subt,
+        '*': mult,
+        '/': div
     }
 
-    const getOperator = arr => arr.filter(item => ["+", "-", "*", "/"].includes(item))
-    const saveOperations = (arr, result) => map.set(`${arr.join('')}`, result)
+    const saveOperations = (arr, result) => map.set(arr.join(''), result)
 
     const enter = expressionValue => {
         expression.push(expressionValue)
     }
 
     const equals = () => {
-        let arr = expression;
-        const result = operators[getOperator(arr)](arr[0], arr[2])
-        saveOperations(arr, result)
+        const [n1, op, n2] = expression;
+        const result = operators[op](n1, n2)
+
+        saveOperations(expression, result)
         expression = []
+
         return result;
     }
 
