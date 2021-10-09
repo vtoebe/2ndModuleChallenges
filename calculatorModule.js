@@ -2,10 +2,10 @@ let calculatorModule = (() => {
     let expression = []
     let map = new Map();
 
-    let sum = (n1, n2) => +n1 + +n2
-    let subt = (n1, n2) => +n1 - +n2
-    let mult = (n1, n2) => +n1 * +n2
-    let div = (n1, n2) => +n1 * +n2
+    const sum = (n1, n2) => +n1 + +n2
+    const subt = (n1, n2) => +n1 - +n2
+    const mult = (n1, n2) => +n1 * +n2
+    const div = (n1, n2) => +n1 * +n2
 
     const operators = {
         '+': sum,
@@ -16,7 +16,10 @@ let calculatorModule = (() => {
 
     const saveOperations = (arr, result) => map.set(arr.join(''), result)
 
-    const enter = expressionValue => expression.push(expressionValue)
+    const enter = expressionValue => {
+        (typeof expressionValue == 'number' || ["+", "-", "*", "/"].includes(expressionValue)) ?
+        expression.push(expressionValue): console.log('Invalid entry! It should be a number or a math operator!')
+    }
 
     const equals = () => {
         const [n1, op, n2] = expression;
@@ -24,7 +27,6 @@ let calculatorModule = (() => {
 
         saveOperations(expression, result)
         expression = []
-
         return result;
     }
 
