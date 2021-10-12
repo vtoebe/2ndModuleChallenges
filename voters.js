@@ -23,23 +23,27 @@ const handleVotesData = group => (voterAcc, voter) => ({
     }
 })
 
-const YOUNG = {group: 'young', rangeStart: 18, rangeEnd: 25}
-const MID = {group: 'mid', rangeStart: 26, rangeEnd: 35}
-const OLD = {group: 'old', rangeStart: 36, rangeEnd: 55}
+const YOUNG = {rangeStart: 18, rangeEnd: 25}
+const MID = {rangeStart: 26, rangeEnd: 35}
+const OLD = {rangeStart: 36, rangeEnd: 55}
 const ageGroups = {YOUNG, MID, OLD}
+
+const votersData = Object.keys(ageGroups).reduce( (voterAcc, group) =>({
+        ...voterAcc,
+        [group]: { people: 0, voted: 0 }
+    }), {}
+)
 
 const getVotersResults = voters.reduce(
     (voterAcc, voter) => {
-        for (const {group, rangeStart, rangeEnd} of Object.values(ageGroups)){
+        for (const group in ageGroups){
+            const {rangeStart, rangeEnd} = ageGroups[group]
+
             if (getAgeRange(voter, rangeStart, rangeEnd)){
                 return handleVotesData(group)(voterAcc, voter)
             }
         }
-    }, {
-        [YOUNG.group]: { people: 0, voted: 0 },
-        [MID.group]: { people: 0, voted: 0 },
-        [OLD.group]: { people: 0, voted: 0 }
-    }
+    }, votersData
 )
 
 console.log(getVotersResults)
