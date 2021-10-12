@@ -5,7 +5,7 @@ let calculatorModule = (() => {
     const sum = (n1, n2) => +n1 + +n2
     const subt = (n1, n2) => +n1 - +n2
     const mult = (n1, n2) => +n1 * +n2
-    const div = (n1, n2) => +n1 * +n2
+    const div = (n1, n2) => n2 !== 0 ? +n1 / +n2 : 'can\'t divide by zero'
 
     const operators = {
         '+': sum,
@@ -40,3 +40,5 @@ let calculatorModule = (() => {
         reset
     }
 })()
+
+const calculator = calculatorModule
