@@ -93,4 +93,14 @@ calculator.equals()
 calculator.list()
 calculator.reset()
 calculator.list()
+
+//Testing invalid math operator
+calculator.enter(7)
+calculator.enter('g')
+calculator.enter(4)
+
+//Testing if it divides by zero
+calculator.enter(14)
+calculator.enter('/')
+calculator.enter(0)
 ```
