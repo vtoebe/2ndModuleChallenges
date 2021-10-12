@@ -13,6 +13,10 @@ const voters = [
     {name: 'Zack', age: 19, voted: false}
 ];
 
+const YOUNG = 'young';
+const MID = 'mid';
+const OLD = 'old'
+
 const getAgeRange = (voter, rangeStart, rangeEnd) => voter.age >= rangeStart && voter.age <= rangeEnd
 
 const handleVotesData = ageGroup => (voterAcc, voter) => ({
@@ -23,9 +27,10 @@ const handleVotesData = ageGroup => (voterAcc, voter) => ({
     }
 })
 
-const handleYoung = handleVotesData('young')
-const handleMid = handleVotesData('mid')
-const handleOld = handleVotesData('old')
+const handleYoung = handleVotesData(YOUNG)
+const handleMid = handleVotesData(MID)
+const handleOld = handleVotesData(OLD)
+
 
 const getVotersResults = voters.reduce(
     (voterAcc, voter) => {
@@ -42,9 +47,9 @@ const getVotersResults = voters.reduce(
             return handleOld(voterAcc, voter)
         }
     }, {
-        young: { people: 0, voted: 0 },
-        mid: { people: 0, voted: 0 },
-        old: { people: 0, voted: 0 }
+        [YOUNG]: { people: 0, voted: 0 },
+        [MID]: { people: 0, voted: 0 },
+        [OLD]: { people: 0, voted: 0 }
     }
 )
 
