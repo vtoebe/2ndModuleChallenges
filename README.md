@@ -1,5 +1,6 @@
 
-<h1 align="center"> Santander Coders | Let's Code | II Module Challenges </h1>
+<h1 align="center"> Santander Coders | Let's Code </h1>
+<h2 align="center"> II Module Challenges </h2>
 <h4 align="center"> Coding Progression: </h4>
 <div align="center" style="display: inline_block">
   <a href="https://vtoebe.notion.site/Matrix-fa739d39e81a4c2782530c55bd7ce6c6">Matrix</a>
