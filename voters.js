@@ -13,43 +13,32 @@ const voters = [
     {name: 'Zack', age: 19, voted: false}
 ];
 
-const YOUNG = 'young';
-const MID = 'mid';
-const OLD = 'old'
-
 const getAgeRange = (voter, rangeStart, rangeEnd) => voter.age >= rangeStart && voter.age <= rangeEnd
 
-const handleVotesData = ageGroup => (voterAcc, voter) => ({
+const handleVotesData = group => (voterAcc, voter) => ({
     ...voterAcc,
-    [ageGroup]: {
-        people: voterAcc[ageGroup].people + 1,
-        voted: voter.voted ? voterAcc[ageGroup].voted + 1 : voterAcc[ageGroup].voted
+    [group]: {
+        people: voterAcc[group].people + 1,
+        voted: voter.voted ? voterAcc[group].voted + 1 : voterAcc[group].voted
     }
 })
 
-const handleYoung = handleVotesData(YOUNG)
-const handleMid = handleVotesData(MID)
-const handleOld = handleVotesData(OLD)
-
+const YOUNG = {group: 'young', rangeStart: 18, rangeEnd: 25}
+const MID = {group: 'mid', rangeStart: 26, rangeEnd: 35}
+const OLD = {group: 'old', rangeStart: 36, rangeEnd: 55}
+const ageGroups = {YOUNG, MID, OLD}
 
 const getVotersResults = voters.reduce(
     (voterAcc, voter) => {
-        if (getAgeRange(voter, 18, 25)) {
-            return handleYoung(voterAcc, voter)
-        }
-
-        if (getAgeRange(voter, 26, 35)) {
-            return handleMid(voterAcc, voter)
-
-        }
-
-        if (getAgeRange(voter, 36, 55)) {
-            return handleOld(voterAcc, voter)
+        for (const {group, rangeStart, rangeEnd} of Object.values(ageGroups)){
+            if (getAgeRange(voter, rangeStart, rangeEnd)){
+                return handleVotesData(group)(voterAcc, voter)
+            }
         }
     }, {
-        [YOUNG]: { people: 0, voted: 0 },
-        [MID]: { people: 0, voted: 0 },
-        [OLD]: { people: 0, voted: 0 }
+        [YOUNG.group]: { people: 0, voted: 0 },
+        [MID.group]: { people: 0, voted: 0 },
+        [OLD.group]: { people: 0, voted: 0 }
     }
 )
 
