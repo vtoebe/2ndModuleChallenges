@@ -10,7 +10,7 @@
 
 ## **Matrix**
 Make an array of strings of the names saying whether or not they can go to The Matrix
-```
+```js
 const people = [
     {name: "Angelina Jolie", age: 80},
     {name: "Eric Jones", age: 2},
@@ -33,7 +33,7 @@ const people = [
 ### Given an array of potential voters, return an object representing the results of the vote
 Include how many of the potential voters were in the ages **18-25**, how many from **26-35**, how many from **36-55**, and how many of each of those age ranges **actually voted**. The resulting object containing this data should have 6 properties. See the example output at the bottom.
 
-```
+```js
 const voters = [
     {name:'Bob' , age: 30, voted: true},
     {name:'Jake' , age: 32, voted: true},
@@ -57,7 +57,7 @@ const voters = [
 }
 ```
 #### Suggested Test:
-``console.log(getVotersResults(voters))``
+``js console.log(getVotersResults(voters))``
 
 
 ## **3. Calculator Module**
@@ -72,7 +72,7 @@ Create a calculator as follows:
 // Map(4) {'5+5' => 10, '23-13' => 10, '30/15' => 450, '7*4' => 28}
 ```
 #### Suggested Test:
-```
+```js
 calculator.enter(5)
 calculator.enter('+')
 calculator.enter(5)
